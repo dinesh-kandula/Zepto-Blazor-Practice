@@ -1,0 +1,60 @@
+﻿@page "/counter"
+@inject BlazorApp2.Services.ApiServices apiServices
+
+@using ModelsClassLibrary.Models
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@* <ul>
+    @foreach (var i in specials)
+    {
+        <li>@i.Name</li>
+        <li>@i.Description</li>
+        <li>@i.BasePrice</li>
+     }
+</ul> *@
+
+
+<div class="container">
+    <div class="row">
+        <div class="d-flex flex-wrap align-items-center justify-content-center">
+            @foreach (var post in posts)
+            {
+                <div style="width: 300px; height: max-content; background-color:aliceblue; border-radius: 12px;" class="border-dark border-1 m-2 p-2">
+                    <h1 class="fw-bold font-monospace fs-6">@post.Title</h1>
+                    <p class="text-dark"><em>@post.Body</em></p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    // List<PizzaSpecial> specials = new();
+
+    // protected override void OnInitialized()
+    // {
+    //     specials.AddRange(new List<PizzaSpecial>
+    //     {
+    //         new PizzaSpecial { Name = "The Baconatorizor", BasePrice =  11.99M, Description = "It has EVERY kind of bacon", ImageUrl="img/pizzas/bacon.jpg"},
+    //         new PizzaSpecial { Name = "Buffalo chicken", BasePrice =  12.75M, Description = "Spicy chicken, hot sauce, and blue cheese, guaranteed to warm you up", ImageUrl="img/pizzas/meaty.jpg"},
+    //         new PizzaSpecial { Name = "Veggie Delight", BasePrice =  11.5M, Description = "It's like salad, but on a pizza", ImageUrl="img/pizzas/salad.jpg"},
+    //         new PizzaSpecial { Name = "Margherita", BasePrice =  9.99M, Description = "Traditional Italian pizza with tomatoes and basil", ImageUrl="img/pizzas/margherita.jpg"},
+    //         new PizzaSpecial { Name = "Basic Cheese Pizza", BasePrice =  11.99M, Description = "It's cheesy and delicious. Why wouldn't you want one?", ImageUrl="img/pizzas/cheese.jpg"},
+    //         new PizzaSpecial { Name = "Classic pepperoni", BasePrice =  10.5M, Description = "It's the pizza you grew up with, but Blazing hot!", ImageUrl="img/pizzas/pepperoni.jpg" }
+    //     });
+    // }
+}

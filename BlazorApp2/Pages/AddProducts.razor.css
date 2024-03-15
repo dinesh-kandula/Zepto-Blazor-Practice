@@ -1,0 +1,10 @@
+﻿.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.toster {
+    border-radius: 12px;
+    border: 1px solid green;
+    box-shadow: 5px 5px 30px 5px lightgreen;
+}

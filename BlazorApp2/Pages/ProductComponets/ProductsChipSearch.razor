@@ -1,0 +1,72 @@
+﻿@using ModelsClassLibrary.Models
+
+<div class="row flex-wrap align-items-center w-100">
+    <div class="d-flex justify-content-between align-items-center">
+            
+        <div class="d-flex align-items-center flex-wrap gap-x-1 gap-y-2">
+            <div class="mx-2 btn btn-outline-info d-flex align-items-center"
+                 @onclick="() => OnClickAll()"
+                 style="border-radius: 20px; width:fit-content; cursor:unset;">
+                <p class="m-0">All</p>
+            </div>
+
+            @if (receviedCategories != null && receviedCategories.Count > 0)
+            {
+                @foreach (var cat in receviedCategories)
+                {
+                    <div class="mx-2 btn btn-outline-dark d-flex align-items-center" style="border-radius: 20px; width:fit-content; cursor:unset;">
+                        <p class="m-0">@cat</p>
+                        <p class="m-0 text-light mx-2 link-danger chip-cancel"
+                           @onclick="() => OnDeleteChipSetAsync(cat)" style="cursor:pointer;">X</p>
+                    </div>
+                }
+            }
+        </div>
+        
+
+        <div class="ms-4">
+            <div class="d-flex align-items-center">
+                @if (loader)
+                {
+                    <BlazorApp2.Pages.UIComponents.Spinner Height="20px" />
+                }
+                @* <input class="mx-2" type="search" id="productSearchInput" @bind="@productNameSearch" @oninput="OnSearchTextEnter" placeholder="Product Search" /> *@
+                <MudTextField Class="m-0 w-100" T="string" Label="Product Name" @bind-Value="@productNameSearch" DebounceInterval="1" OnDebounceIntervalElapsed="OnSearchTextEnter" Clearable="true" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Info" />
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@code {
+    [Parameter]
+    public List<CategoryEnum>? receviedCategories { get; set; }
+
+    [Parameter]
+    public EventCallback<CategoryEnum> DeleteChipSetAsync { get; set; }
+
+    [Parameter]
+    public EventCallback<string> SearchTextEnter { get; set; }
+
+    [Parameter]
+    public bool loader { get; set; }
+
+    [Parameter]
+    public EventCallback ClearFilters { get; set; }
+
+    public required string productNameSearch { get; set; }
+
+    private async Task OnDeleteChipSetAsync(CategoryEnum data)
+    {
+        await DeleteChipSetAsync.InvokeAsync(data);
+    }
+
+    private async void OnSearchTextEnter(String text)
+    {
+        productNameSearch = text;
+        await SearchTextEnter.InvokeAsync(productNameSearch);
+    }
+
+    private async void OnClickAll() => await ClearFilters.InvokeAsync();
+}

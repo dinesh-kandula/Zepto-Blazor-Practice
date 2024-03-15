@@ -1,0 +1,30 @@
+﻿@page "/PizzaDetails"
+@page "/PizzaDetails/{PizzaId:int}"
+
+@inject BlazorApp2.Services.ApiServices apiServices
+
+<h3>PizzaDetails</h3>
+
+@if (Pizza == null)
+{
+    <BlazorApp2.Pages.UIComponents.Spinner Height="90vh" />
+}
+else
+{
+    <div class="container my-3">
+        <div class="row justify-content-center">
+            <div style="background-image: url('@Pizza.ImageUrl'); height:350px; width:60%"></div>
+
+            <div class="pizza-info d-flex flex-column">
+                <h2 class="title">@Pizza.Name</h2>
+                <p>@Pizza.Description</p>
+                <span class="price btn btn-outline-dark align-self-end" style="border-radius: 12px;">@Pizza.GetFormattedBasePrice()</span>
+            </div>
+
+        </div>
+    </div>
+}
+
+@code {
+
+}

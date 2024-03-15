@@ -1,0 +1,29 @@
+﻿@page "/"
+@inject BlazorApp2.Services.ApiServices apiServices
+
+
+<div class="main">
+    <h1>Blazing Pizzas</h1>
+
+    @if (Specials.Count == 0)
+    {
+       <BlazorApp2.Pages.UIComponents.Spinner Height="80vh"/>
+    }
+    else
+    {
+        <ul class="pizza-cards">
+            @foreach (var special in Specials)
+            {
+                <li style="background-image: url('@special.ImageUrl')">
+                    <a href="PizzaDetails/@special.Id">
+                        <div class="pizza-info">
+                            <span class="title">@special.Name</span>
+                            @special.Description
+                            <span class="price">@special.GetFormattedBasePrice()</span>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>

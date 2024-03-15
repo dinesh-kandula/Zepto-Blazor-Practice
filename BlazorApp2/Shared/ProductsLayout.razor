@@ -1,0 +1,17 @@
+﻿@layout TelerikLayout
+@inherits LayoutComponentBase
+<div class="page">
+    @* <div class="sidebar">
+        <ProductNavMenu />
+    </div> *@
+    <MudThemeProvider />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+
+    <MudLayout>
+        <MudMainContent>
+            @Body
+        </MudMainContent>
+    </MudLayout>
+
+</div>

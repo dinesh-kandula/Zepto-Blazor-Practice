@@ -1,0 +1,52 @@
+﻿@using ModelsClassLibrary.Models
+
+<div class="sidebar">
+    <div>
+        <h3>Filter Categories</h3>
+        <div>
+            @foreach (CategoryEnum category in Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>().ToList())
+            {
+                <label class="text-truncate cursor-pointer" >
+                    <input type="checkbox" value="@category.ToString()" 
+                        @onclick="() => OnCheckboxClicked(category)"
+                        checked=@receviedCategories.Contains(category)
+                    />
+                    @product.ConvertCategory(category.ToString())
+                </label>
+                <br/>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private Product product = new(){ProductName =""};
+
+    private List<CategoryEnum> SelectedCategories { get; set; } = new List<CategoryEnum>();
+
+    [Parameter]
+    public EventCallback<int> OnFilterCategory { get; set; }
+
+    [Parameter]
+    public List<CategoryEnum> receviedCategories { get; set; }
+
+    [Parameter]
+    public List<int> receviedcategoryIntArray { get; set; }
+
+    [Parameter]
+    public EventCallback<Task> FilterTheProductsAsync { get; set; }
+
+    private async Task OnCheckboxClicked(CategoryEnum category)
+    {
+        if (receviedCategories.Contains(category))
+        {
+            receviedCategories.Remove(category);
+            receviedcategoryIntArray.Remove((int)category);
+            StateHasChanged();
+            await FilterTheProductsAsync.InvokeAsync();
+        }else{
+            await OnFilterCategory.InvokeAsync((int)category);
+        }
+    }
+
+}

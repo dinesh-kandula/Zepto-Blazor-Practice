@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelsClassLibrary.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,18 +9,7 @@ using System.Threading.Tasks;
 
 namespace ModelsClassLibrary.Models
 {
-    public enum CategoryEnum
-    {
-        FruitsAndVegetables,
-        AttaRiceOilAndDals,
-        MasalaAndDryFruits,
-        SweetCravings,
-        FrozenFoodAndIceCreams,
-        PackageFood,
-        DairyBreadAndEggs,
-        ColdDrinksAndJuices,
-        MeatFishAndEggs
-    }
+    
 
     public partial class Product
     {
@@ -36,9 +26,14 @@ namespace ModelsClassLibrary.Models
 
         public string? Description { get; set; }
 
-        public string? ImageUrl { get; set; }
+        [Required(ErrorMessage = $"Provide the Quantity of the product")]
+        public required string Quantity { get; set; }
 
-        public CategoryEnum Category { get; set; }  
+        public string? ImageUrl { get; set; }
+        
+        public CategoryEnum Category { get; set; }
+
+        public virtual ICollection<Cart>? Carts { get; set; }
 
         public string GetFormattedBasePrice() => BasePrice.ToString("0.00");
 
@@ -52,10 +47,10 @@ namespace ModelsClassLibrary.Models
 
         public string GetCategoryDisplayName()
         {
-            string catString = Category.ToString();
-            return ConvertCategory(catString);
-        }
-     
+            string catString = Category.ToString()!;
+            return ConvertCategory(catString!);
+        }  
+       
         public string ConvertCategory(string catString)
         {
             StringBuilder result = new();
@@ -68,7 +63,7 @@ namespace ModelsClassLibrary.Models
                 }
                 if (i + 2 < catString.Length && catString.Substring(i, 3) == "And")
                 {
-                    result.Append("&");
+                    result.Append('&');
                     i += 2;
                 }
                 else

@@ -1,12 +1,57 @@
 @layout TelerikLayout
 @inherits LayoutComponentBase
+
+@*
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
+    <MudThemeProvider />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+
+    <MudLayout>
+        <MudMainContent>
+            @Body
+        </MudMainContent>
+    </MudLayout>
     <main>
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+ *@
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Elevation="5" Color="Color.Success" Style="@($"color:{Theme.Palette.SuccessLighten}; background:{Theme.Palette.Dark};")">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
+        <MudDrawerHeader Class="d-flex justify-content-center align-items-center">
+            <MudText Typo="Typo.h5" Class="mt-1">Application</MudText>
+            <a class="navbar-brand" href="">
+                <MudIcon Icon="@Icons.Material.TwoTone.LocalGroceryStore" Title="APP Logo" Color="Color.Success" />
+            </a>
+        </MudDrawerHeader>
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme Theme = new MudTheme();
+
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

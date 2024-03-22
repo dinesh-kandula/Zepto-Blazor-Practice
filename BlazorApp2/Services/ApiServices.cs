@@ -17,19 +17,8 @@ namespace BlazorApp2.Services
         public async Task<List<T>> GetApiData<T>(string url)
         {
             var response = await _httpClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                {
-                    return default(List<T>);
-                }
-                return await response.Content.ReadFromJsonAsync<List<T>>();
-            }
-            else
-            {
-                var message = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Http status code: {response.StatusCode} message: {message}");
-            }
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<T>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         public async Task<T> GetAsync<T>(string url)

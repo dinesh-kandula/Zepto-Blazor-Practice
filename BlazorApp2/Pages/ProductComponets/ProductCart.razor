@@ -1,0 +1,51 @@
+﻿@page "/product-cart"
+@using ModelsClassLibrary.Models
+@inject BlazorApp2.Services.ProductCartService cartService
+
+@if (Products != null) 
+{
+    @foreach (var product in Products)
+    {
+
+        <div class="card p-0 m-3" style="width: 13rem; border-radius:20px;">
+            <div class="position-absolute btn btn-dark product-offer" style="color:#0dcaf0;">@product.GetOfferPercentage()</div>
+            <img src="@product.ImageUrl" style="border-top-left-radius:20px; border-top-right-radius:20px;" class="card-img-top" alt="@product.ProductName">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title">
+                    @product.ProductName
+                    <br />
+                    <MudText Typo="Typo.caption" Color="Color.Primary">@product.Quantity</MudText>
+                    </h5>
+                    <p class="link-info"
+                       style="cursor:pointer;">
+                        @product.GetCategoryDisplayName()
+                </p>
+
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <p class="fw-light my-0 text-decoration-line-through" style="font-size:14px;">₹@product.BasePrice</p>
+                        <p class="fw-bold m-0 fs-5">@product.GetDiscountedPrice()</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    <MudSkeleton />
+    <MudSkeleton SkeletonType="SkeletonType.Circle" Width="50px" Height="50px" />
+    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="200px" Height="110px" />
+}
+
+@code {
+
+    private List<Product>? Products { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Products = cartService.CartItems;
+    }
+
+}

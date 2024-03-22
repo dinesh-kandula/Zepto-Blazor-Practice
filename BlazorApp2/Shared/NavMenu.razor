@@ -1,4 +1,7 @@
-﻿<div class="top-row ps-3 py-0 navbar navbar-dark">
+﻿@inject BlazorApp2.Services.ProductCartService cartService
+@using ModelsClassLibrary.Models
+
+@* <div class="top-row ps-3 py-0 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">
             <img src="https://placehold.co/40?text=Z" style="border-radius:50%;" />
@@ -43,4 +46,30 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+}
+ *@
+
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
+    <MudNavLink Href="/add-products" Match="NavLinkMatch.Prefix">Add Products</MudNavLink>
+    <MudNavGroup Title="Products" Expanded="true">
+        <MudNavLink Href="/all-products-list" Match="NavLinkMatch.Prefix">Products</MudNavLink>
+        <MudNavLink Href="/product-cart" Match="NavLinkMatch.Prefix">
+            <MudBadge Origin="Origin.TopRight" Content="@cartService.CartItems.Count" Color="Color.Secondary" Overlap=true>
+                Cart<MudIcon Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Medium" />
+            </MudBadge>
+        </MudNavLink>
+    </MudNavGroup>
+    <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
+</MudNavMenu>
+
+
+@code {
+    // private int badgeContent { get; set; }
+
+    // protected override void OnAfterRender(bool firstRender)
+    // {
+    //     List<Product> Products = cartService.CartItems;
+    //     badgeContent = Products.Count();
+    // }
 }

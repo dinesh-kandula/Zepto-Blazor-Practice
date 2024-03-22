@@ -1,52 +1,31 @@
 ﻿@using ModelsClassLibrary.Models
+@using ModelsClassLibrary.Models.Enums
 
-<div class="sidebar">
+<div class="sidebar" style="overflow:auto">
     <div>
-        <h3>Filter Categories</h3>
-        <div>
+        <MudText Typo="Typo.h6" Color="Color.Secondary">Filter Categories</MudText>
+        <MudChipSet MultiSelection="true" Filter="true"
+                    SelectedValuesChanged="category => onSelectedValuesChanges(category)">
             @foreach (CategoryEnum category in Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>().ToList())
             {
-                <label class="text-truncate cursor-pointer" >
-                    <input type="checkbox" value="@category.ToString()" 
-                        @onclick="() => OnCheckboxClicked(category)"
-                        checked=@receviedCategories.Contains(category)
-                    />
-                    @product.ConvertCategory(category.ToString())
-                </label>
-                <br/>
+                <MudChip Text="@product.ConvertCategory(category.ToString())"
+                         Value="@category"
+                         Variant="Variant.Text" Color="Color.Success"
+                         SelectedColor="Color.Error"
+                ></MudChip>
             }
-        </div>
+        </MudChipSet>
     </div>
 </div>
 
 @code {
-    private Product product = new(){ProductName =""};
-
-    private List<CategoryEnum> SelectedCategories { get; set; } = new List<CategoryEnum>();
+    private Product product = new() { ProductName = "", Quantity = "" };
 
     [Parameter]
-    public EventCallback<int> OnFilterCategory { get; set; }
+    public EventCallback<ICollection<object>> OnFilterCategoryAsync { get; set; }
 
-    [Parameter]
-    public List<CategoryEnum> receviedCategories { get; set; }
-
-    [Parameter]
-    public List<int> receviedcategoryIntArray { get; set; }
-
-    [Parameter]
-    public EventCallback<Task> FilterTheProductsAsync { get; set; }
-
-    private async Task OnCheckboxClicked(CategoryEnum category)
+    private async void onSelectedValuesChanges(ICollection<object> selectedCollection)
     {
-        if (receviedCategories.Contains(category))
-        {
-            receviedCategories.Remove(category);
-            receviedcategoryIntArray.Remove((int)category);
-            StateHasChanged();
-            await FilterTheProductsAsync.InvokeAsync();
-        }else{
-            await OnFilterCategory.InvokeAsync((int)category);
-        }
+        await OnFilterCategoryAsync.InvokeAsync(selectedCollection);
     }
-
 }

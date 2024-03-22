@@ -69,6 +69,7 @@ namespace ZeptoApi.Controllers
 
                 List<Product> products = _unitOfWork.ProductRepository.GetAllProductsWithFilter(productParam);
 
+
                 if (categories != null && categories.Count > 0)
                 {
                     List<Product> filteredProducts = products
@@ -76,12 +77,6 @@ namespace ZeptoApi.Controllers
                     .ToList();
                     products = filteredProducts;
                 }
-
-                if(products.Count == 0)
-                {
-                    return StatusCode(StatusCodes.Status404NotFound, "No Product with applied Filter, Try Again");
-                }
-
                 return Ok(products);
             }
             catch (Exception)

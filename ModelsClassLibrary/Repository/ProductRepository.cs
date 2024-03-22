@@ -35,7 +35,7 @@ namespace ModelsClassLibrary.Repository
             }
             else
             {
-                result = [.. _context.Products.FromSqlRaw("EXEC dbo.spProduct_ByName"),];
+                result = [.. _context.Products.FromSqlRaw("EXEC dbo.spProduct_ByName")];
             }
 
             return result;
@@ -45,7 +45,7 @@ namespace ModelsClassLibrary.Repository
 
         public override async Task<Product> GetAsync(int id)
         {
-            return await DbSet.FirstOrDefaultAsync(item => item.Id == id)!;
+            return await DbSet.FirstOrDefaultAsync(item => item.Id == id);
         }
 
         public override async Task<Product> AddEntity(Product entity)

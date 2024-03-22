@@ -1,0 +1,33 @@
+﻿@using ModelsClassLibrary.Models
+@using ModelsClassLibrary.Models.Enums
+
+<MudItem xs="12">
+    <div class="d-flex align-items-center mx-3">
+        @if (loader)
+        {
+            <BlazorApp2.Pages.UIComponents.Spinner Height="20px" />
+        }
+        <MudTextField Class="ml-auto" T="string" Label="Product Name"
+                      Clearable="true" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search"
+                      Immediate="true" ValueChanged="Text => UpdateParentValueAsync(Text)"
+                      AdornmentColor="Color.Info" />
+    </div>
+</MudItem>
+
+@code {
+
+    [Parameter]
+    public required string productNameSearch { get; set; }
+
+    [Parameter]
+    public EventCallback<string> SearchTextEnter { get; set; }
+
+    [Parameter]
+    public bool loader { get; set; }
+
+
+    private async Task UpdateParentValueAsync(string text)
+    {
+        await SearchTextEnter.InvokeAsync(text);
+    }
+}

@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ModelsClassLibrary.Models;
 using Microsoft.Data.SqlClient;
+using Dapper;
+using System.Data;
+using ModelsClassLibrary.Services;
 
 namespace ModelsClassLibrary.Repository
 {
@@ -24,6 +27,20 @@ namespace ModelsClassLibrary.Repository
             return base.GetAllAsync();
         }
 
+        public List<Product> ADOGetAllAsync(String? productName)
+        {
+            var productParam = new DynamicParameters();
+            if (productName != null)
+            {
+                productParam.Add("@productName", productName);
+            }
+
+            using var connection = _context.CreateConnection();
+            {
+                var result = connection.Query<Product>("spProduct_ByName", productParam, commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+        }
 
         public List<Product> GetAllProductsWithFilter(SqlParameter? productParam)
         {

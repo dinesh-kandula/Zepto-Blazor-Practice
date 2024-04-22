@@ -10,9 +10,9 @@ namespace ModelsClassLibrary.Models
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public Guid ZeptoUserId { get; set; }
 
-        public virtual User? User { get; set; }
+        public virtual ZeptoUser? ZeptoUser { get; set; }
 
         public virtual ICollection<Product>? Products  { get; set; }
 

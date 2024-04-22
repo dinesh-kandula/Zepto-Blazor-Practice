@@ -6,21 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelsClassLibrary.Models
+namespace ModelsClassLibrary.Models.DTO
 {
-    public class User
+    public class ZeptoUserDTO
     {
-        public int Id { get; set; }
-
         [Required]
         public required string UserName { get; set; }
 
-        [DataType(DataType.Password), Length(minimumLength:4, maximumLength:16), Required]
+        [DataType(DataType.Password), Length(minimumLength: 4, maximumLength: 16), Required]
         public required string Password { get; set; }
 
         [DataType(DataType.EmailAddress), Required]
         public required string Email { get; set; }
-        
+
         [Required, MinLength(3)]
         public required string FullName { get; set; }
 
@@ -28,13 +26,9 @@ namespace ModelsClassLibrary.Models
 
         public string? Address { get; set; }
 
-        [MinLength(10), MaxLength(10), DataType(DataType.PhoneNumber)]
-        public int Phone { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        public long Phone { get; set; }
 
         public UserTypeEnum UserType { get; set; }
-
-        public virtual Cart? Cart {  get; set; }
-
     }
-
 }

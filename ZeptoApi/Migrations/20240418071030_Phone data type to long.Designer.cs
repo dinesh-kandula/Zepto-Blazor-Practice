@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModelsClassLibrary.Models;
 
@@ -11,9 +12,11 @@ using ModelsClassLibrary.Models;
 namespace ZeptoApi.Migrations
 {
     [DbContext(typeof(ZeptoContext))]
-    partial class ZeptoContextModelSnapshot : ModelSnapshot
+    [Migration("20240418071030_Phone data type to long")]
+    partial class Phonedatatypetolong
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,6 +151,7 @@ namespace ZeptoApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Phone")
+                        .HasMaxLength(10)
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedDate")

@@ -1,0 +1,6 @@
+@Practice_ADO_Dapper_HostAddress = http://localhost:5158
+
+GET {{Practice_ADO_Dapper_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

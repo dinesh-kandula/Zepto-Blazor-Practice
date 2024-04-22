@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ModelsClassLibrary.Models;
-using ModelsClassLibrary.Repository;
+using ModelsClassLibrary.Services;
+using ZeptoApi.Filter;
 using System.Data;
 using System.Linq;
 
@@ -19,56 +22,14 @@ namespace ZeptoApi.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        //[HttpGet]
-        //[Route("GetAllProducts")]
-        //public async Task<ActionResult> GetAllProducts(string? productName, [FromQuery] List<int>? categories)
-        //{
-        //    try
-        //    {
-        //        List<Product> products = await _unitOfWork.ProductRepository.GetAllAsync();
-
-        //        if (productName != null && !string.IsNullOrWhiteSpace(productName))
-        //        {
-        //            List<Product> filteredProducts = products
-        //                   .Where(p => p.ProductName.Contains(productName, StringComparison.CurrentCultureIgnoreCase))
-        //                   .ToList();
-        //            products = filteredProducts;
-        //            ;
-        //        }
-
-        //        if (categories != null && categories.Count > 0)
-        //        {
-        //            List<Product> filteredProducts = products
-        //            .Where(p => categories.Contains((int)p.Category))
-        //            .ToList();
-        //            products = filteredProducts;
-        //        }
-
-        //        products = [.. products.OrderBy(p => p.ProductName)];
-
-        //        return Ok(products);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //            "Error retrieving data from the database");
-        //    }
-        //}
-
         [HttpGet]
         [Route("GetAllProducts")]
+        [AuthAtribute("Admin")]
         public ActionResult GetAllProducts(string? productName, [FromQuery] List<int>? categories)
         {
             try
-            {
-                SqlParameter productParam = null!;
-                if (productName != null)
-                {
-                    productParam = new SqlParameter("@productName", productName);
-                }
-
-                List<Product> products = _unitOfWork.ProductRepository.GetAllProductsWithFilter(productParam);
-
+            { 
+                List<Product> products = _unitOfWork.ProductRepository.ADOGetAllAsync(productName);
 
                 if (categories != null && categories.Count > 0)
                 {

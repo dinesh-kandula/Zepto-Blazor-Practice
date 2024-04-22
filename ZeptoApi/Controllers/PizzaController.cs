@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ModelsClassLibrary.Repository;
+using ModelsClassLibrary.Services;
 
 namespace ZeptoApi.Controllers
 {

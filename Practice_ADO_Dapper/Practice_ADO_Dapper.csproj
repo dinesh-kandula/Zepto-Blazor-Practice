@@ -19,10 +19,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="TodoModels">
-      <HintPath>..\..\DividedCode\TodoModels\bin\Debug\net8.0\TodoModels.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

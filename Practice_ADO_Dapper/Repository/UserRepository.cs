@@ -1,15 +1,14 @@
 ﻿using Dapper;
 using Practice_ADO_Dapper.DBContext;
 using Practice_ADO_Dapper.Services;
-using TodoModels.Models;
 
 namespace Practice_ADO_Dapper.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly SQLDBContext _context;
+        private readonly IDBContext _context;
 
-        public UserRepository(SQLDBContext context)
+        public UserRepository(IDBContext context)
         {
             _context = context;
         }

@@ -18,8 +18,6 @@ builder.Services.AddScoped<ProductCartService>();
 
 builder.Services.AddMudServices();
 
-builder.Services.AddTelerikBlazor();
-
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7182/") });
 
 builder.Services.AddHttpClient("ZeptoAPI", (sp, client) =>

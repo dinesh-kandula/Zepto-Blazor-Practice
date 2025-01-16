@@ -1,0 +1,30 @@
+﻿@page "/Home"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<h4>Following are the life cycle events called as per the order of execution.</h4>
+<br />
+
+@foreach (string item in Events)
+{
+    <h6>@item</h6>
+    <br />
+}
+
+@code{
+    List<string> Events = new();
+    protected override void OnInitialized()
+    {
+        Events.Add("1. OnInitialized");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Events.Add("2. OnInitializedAsync");
+        await Task.Delay(2000);
+    }
+}

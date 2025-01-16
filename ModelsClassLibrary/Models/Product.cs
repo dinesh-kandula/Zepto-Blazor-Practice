@@ -9,14 +9,11 @@ using System.Threading.Tasks;
 
 namespace ModelsClassLibrary.Models
 {
-    
-
     public partial class Product
     {
         public int Id { get; set; }
 
-        [Required]
-        public required string ProductName { get; set; }
+        public string? ProductName { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "The price must be at least {1}.")]
         public decimal BasePrice { get; set; }
@@ -29,28 +26,30 @@ namespace ModelsClassLibrary.Models
         [Required(ErrorMessage = $"Provide the Quantity of the product")]
         public required string Quantity { get; set; }
 
+        [Display(Name = "ImageURL")]
         public string? ImageUrl { get; set; }
-        
+
         public CategoryEnum Category { get; set; }
 
         public virtual ICollection<Cart>? Carts { get; set; }
 
         public string GetFormattedBasePrice() => BasePrice.ToString("0.00");
 
-        public string GetDiscountedPrice() {
+        public string GetDiscountedPrice()
+        {
             decimal discountedPrice = BasePrice * (Offer / 100);
             decimal discountPrice = BasePrice - discountedPrice;
             return discountPrice.ToString("0.00");
         }
 
-        public string GetOfferPercentage() => Offer.ToString("0")+ "% Off";
+        public string GetOfferPercentage() => Offer.ToString("0") + "% Off";
 
         public string GetCategoryDisplayName()
         {
             string catString = Category.ToString()!;
             return ConvertCategory(catString!);
-        }  
-       
+        }
+
         public string ConvertCategory(string catString)
         {
             StringBuilder result = new();

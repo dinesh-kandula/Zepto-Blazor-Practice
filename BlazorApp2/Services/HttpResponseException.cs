@@ -20,7 +20,7 @@ namespace BlazorApp2.Services
         }
 
         protected HttpResponseException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+            : base(info: info, context: context)
         {
         }
     }

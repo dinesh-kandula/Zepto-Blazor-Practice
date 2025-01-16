@@ -1,0 +1,42 @@
+﻿@using ModelsClassLibrary.Models
+@using ModelsClassLibrary.Models.Enums
+@rendermode InteractiveServer
+
+<div class="">
+    <div>
+        <MudText Typo="Typo.h6" Color="Color.Secondary">Filter Categories</MudText>
+
+        <MudChipSet T="string"
+                    CheckMark
+                    SelectionMode="@SelectionMode.ToggleSelection"
+                    SelectedValueChanged="cat => onSelectedValuesChanges(cat)">
+
+            <div class="d-flex flex-wrap justify-content-center">
+                @foreach (CategoryEnum category in Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>().ToList())
+                {
+                    @if (category != CategoryEnum.All)
+                    {
+                        <MudChip Text="@product.ConvertCategory(category.ToString())"
+                                 Value="@category.ToString()"
+                                 Variant="Variant.Text" Color="Color.Success" Ripple="true"
+                                 SelectedColor="Color.Error"></MudChip>
+                    }
+                }
+            </div>
+
+        </MudChipSet>
+    </div>
+</div>
+
+@code {
+    private Product product = new() { ProductName = "", Quantity = "" };
+
+    [Parameter]
+    public EventCallback<string> OnFilterCategoryAsync { get; set; }
+
+
+    private async void onSelectedValuesChanges(string selectedCategory)
+    {
+        await OnFilterCategoryAsync.InvokeAsync(selectedCategory);
+    }
+}

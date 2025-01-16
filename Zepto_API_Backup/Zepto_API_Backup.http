@@ -1,0 +1,6 @@
+@Zepto_API_Backup_HostAddress = http://localhost:5287
+
+GET {{Zepto_API_Backup_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

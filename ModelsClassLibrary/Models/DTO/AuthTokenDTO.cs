@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ModelsClassLibrary.Models.DTO
 {
-    public  class AuthTokenDTO
+    public class AuthTokenDTO
     {
-        public string? JWTAccessToken {  get; set; }
+        public string? AccessToken { get; set; }
 
         public string? RefreshToken { get; set; }
     }

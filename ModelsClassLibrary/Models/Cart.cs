@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ModelsClassLibrary.Models
+namespace ModelsClassLibrary.Models;
+
+public partial class Cart
 {
-    public class Cart
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public Guid ZeptoUserId { get; set; }
+    public Guid ZeptoUserId { get; set; }
 
-        public virtual ZeptoUser? ZeptoUser { get; set; }
+    public virtual ZeptoUser ZeptoUser { get; set; } = null!;
 
-        public virtual ICollection<Product>? Products  { get; set; }
-
-    }
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

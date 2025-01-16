@@ -8,15 +8,15 @@ namespace ModelsClassLibrary.Models.Enums
 {
     public enum CategoryEnum
     {
-        FruitsAndVegetables,
+        All = 0,
         AttaRiceOilAndDals,
-        MasalaAndDryFruits,
-        SweetCravings,
-        FrozenFoodAndIceCreams,
-        PackageFood,
-        DairyBreadAndEggs,
         ColdDrinksAndJuices,
-        MeatFishAndEggs
+        DairyBreadAndEggs,
+        FrozenFoodAndIceCreams,
+        FruitsAndVegetables,
+        MasalaAndDryFruits,
+        PackageFood,
+        SweetCravings
     }
 
     public enum GenderEnum

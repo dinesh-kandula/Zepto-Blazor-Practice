@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp2", "BlazorApp2\BlazorApp2.csproj", "{E673DF88-AD30-4B23-B064-54BFFD5AC35E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelsClassLibrary", "ModelsClassLibrary\ModelsClassLibrary.csproj", "{61F2BB90-1E36-46AC-A74A-46E6AAEDE563}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeptoApi", "ZeptoApi\ZeptoApi.csproj", "{82C2094A-64F8-470B-BD6F-D855ECAA8727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zepto_API_Backup", "Zepto_API_Backup\Zepto_API_Backup.csproj", "{92BBA1E6-6DF4-425A-80A5-C41EC6B09382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice_ADO_Dapper", "Practice_ADO_Dapper\Practice_ADO_Dapper.csproj", "{82925BCF-4C5C-4E38-B8A8-45E5C1244851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp18_Server", "BlazorApp18_Server\BlazorApp18_Server.csproj", "{56F9E36C-7F81-49BF-AF86-B0CA88A4E9B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E673DF88-AD30-4B23-B064-54BFFD5AC35E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E673DF88-AD30-4B23-B064-54BFFD5AC35E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E673DF88-AD30-4B23-B064-54BFFD5AC35E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E673DF88-AD30-4B23-B064-54BFFD5AC35E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{61F2BB90-1E36-46AC-A74A-46E6AAEDE563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61F2BB90-1E36-46AC-A74A-46E6AAEDE563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61F2BB90-1E36-46AC-A74A-46E6AAEDE563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61F2BB90-1E36-46AC-A74A-46E6AAEDE563}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82C2094A-64F8-470B-BD6F-D855ECAA8727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82C2094A-64F8-470B-BD6F-D855ECAA8727}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82C2094A-64F8-470B-BD6F-D855ECAA8727}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82C2094A-64F8-470B-BD6F-D855ECAA8727}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82925BCF-4C5C-4E38-B8A8-45E5C1244851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82925BCF-4C5C-4E38-B8A8-45E5C1244851}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82925BCF-4C5C-4E38-B8A8-45E5C1244851}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82925BCF-4C5C-4E38-B8A8-45E5C1244851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92BBA1E6-6DF4-425A-80A5-C41EC6B09382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92BBA1E6-6DF4-425A-80A5-C41EC6B09382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92BBA1E6-6DF4-425A-80A5-C41EC6B09382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92BBA1E6-6DF4-425A-80A5-C41EC6B09382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F9E36C-7F81-49BF-AF86-B0CA88A4E9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F9E36C-7F81-49BF-AF86-B0CA88A4E9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F9E36C-7F81-49BF-AF86-B0CA88A4E9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F9E36C-7F81-49BF-AF86-B0CA88A4E9B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

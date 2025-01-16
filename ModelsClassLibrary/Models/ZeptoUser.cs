@@ -1,44 +1,35 @@
-﻿using ModelsClassLibrary.Models.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ModelsClassLibrary.Models
+namespace ModelsClassLibrary.Models;
+
+public partial class ZeptoUser
 {
-    public class ZeptoUser
-    {
-        public Guid Id { get; set; }
+    public Guid Id { get; set; }
 
-        [Required]
-        public required string UserName { get; set; }
+    public string UserName { get; set; } = null!;
 
-        [DataType(DataType.Password), Length(minimumLength:4, maximumLength:16), Required]
-        public required string Password { get; set; }
+    public string Password { get; set; } = null!;
 
-        [DataType(DataType.EmailAddress), Required]
-        public required string Email { get; set; }
-        
-        [Required, MinLength(3)]
-        public required string FullName { get; set; }
+    public string Email { get; set; } = null!;
 
-        public GenderEnum Gender { get; set; }
+    public string FullName { get; set; } = null!;
 
-        public string? Address { get; set; }
+    public string Gender { get; set; } = null!;
 
-        [DataType(DataType.PhoneNumber)]
-        public long Phone { get; set; }
+    public string? Address { get; set; }
 
-        public UserTypeEnum UserType { get; set; }
+    public long Phone { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+    public string UserType { get; set; } = null!;
 
-        public DateTime? UpdatedDate { get; set; }
+    public DateTime? CreatedDate { get; set; }
 
-        public virtual Cart? Cart {  get; set; }
+    public DateTime? UpdatedDate { get; set; }
 
-    }
+    public string? RefreshToken { get; set; }
 
+    public DateTime? RefreshTokenExpiryTime { get; set; }
+
+    public virtual Cart? Cart { get; set; }
 }

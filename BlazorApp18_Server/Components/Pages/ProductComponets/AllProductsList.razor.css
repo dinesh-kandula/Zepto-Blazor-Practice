@@ -1,0 +1,5 @@
+﻿.chip-cancel:hover {
+    transform: scale(1.5);
+    font-weight: bold;
+    color: red !important;
+}

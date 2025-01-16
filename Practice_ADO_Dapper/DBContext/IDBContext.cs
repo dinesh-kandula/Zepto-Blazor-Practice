@@ -1,7 +1,10 @@
-﻿namespace Practice_ADO_Dapper.DBContext
+﻿using System.Data;
+
+namespace Practice_ADO_Dapper.DBContext
 {
     public interface IDBContext
     {
-        public string connectionString { get; set; }
+        string ConnectionString { get; set; }
+        IDbConnection CreateConnection();
     }
 }

@@ -6,7 +6,6 @@ using ModelsClassLibrary.Models.Enums;
 using System;
 using System.Net;
 using System.Text;
-using Telerik.SvgIcons;
 
 namespace BlazorApp2.Pages.ProductComponets
 {

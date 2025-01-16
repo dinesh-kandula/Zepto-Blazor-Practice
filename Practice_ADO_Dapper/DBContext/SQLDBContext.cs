@@ -8,14 +8,15 @@ namespace Practice_ADO_Dapper.DBContext
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString = string.Empty;
-        public string connectionString { get; set; } = string.Empty;
-
+        public string ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+       
         public SQLDBContext(IConfiguration configuration)
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("SqlConnection") ?? string.Empty;
         }
-        public IDbConnection CreateConnection()
-           => new SqlConnection(_connectionString);
+
+        public IDbConnection CreateConnection() 
+            => new SqlConnection(_connectionString);
     }
 }
